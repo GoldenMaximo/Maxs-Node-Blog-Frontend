@@ -71,15 +71,15 @@ class App extends Component {
                 }
             `
         };
-        console.log('here bouyo: ', graphqlQuery);
+
         fetch('http://localhost:8080/graphql',
-        {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(graphqlQuery)
-        })
+            {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(graphqlQuery)
+            })
             .then(res => {
                 return res.json();
             })
@@ -101,8 +101,8 @@ class App extends Component {
                     authLoading: false,
                     userId: resData.data.login.userId
                 });
-                localStorage.setItem('token', resData.token);
-                localStorage.setItem('userId', resData.userId);
+                localStorage.setItem('token', resData.data.login.token);
+                localStorage.setItem('userId', resData.data.login.userId);
                 const remainingMilliseconds = 60 * 60 * 1000;
                 const expiryDate = new Date(
                     new Date().getTime() + remainingMilliseconds
