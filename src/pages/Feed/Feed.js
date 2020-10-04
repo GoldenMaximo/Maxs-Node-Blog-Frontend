@@ -172,27 +172,28 @@ class Feed extends Component {
                 const imageUrl = resData.filePath;
                 let graphqlQuery = {
                     query: `
-                    mutation {
-                        createPost(postInput: { title: "${postData.title}", content: "${postData.content}", imageUrl: "${imageUrl}" }) {
-                            title
-                            content
-                            imageUrl
-                            creator {
-                                name
+                        mutation {
+                            createPost(postInput: { title: "${postData.title}", content: "${postData.content}", imageUrl: "${imageUrl}" }) {
+                                _id
+                                title
+                                content
+                                creator {
+                                    name
+                                }
+                                createdAt
+                                imageUrl
                             }
-                            createdAt
                         }
-                    }
-                `
+                    `
                 };
 
                 return fetch('http://localhost:8080/graphql', {
                     method: 'POST',
-                    body: JSON.stringify(graphqlQuery),
                     headers: {
                         Authorization: `Bearer ${this.props.token}`,
                         'Content-Type': 'application/json'
-                    }
+                    },
+                    body: JSON.stringify(graphqlQuery)
                 })
             })
             .then(res => res.json())
@@ -204,7 +205,7 @@ class Feed extends Component {
                 }
 
                 if (resData.errors) {
-                    throw new Error("User creation failed.");
+                    throw new Error("Post creation failed.");
                 }
 
                 const post = {

@@ -94,7 +94,6 @@ class App extends Component {
                     throw new Error("Login failed.");
                 }
 
-                console.log(resData);
                 this.setState({
                     isAuth: true,
                     token: resData.data.login.token,
