@@ -16,8 +16,8 @@ class SinglePost extends Component {
         const postId = this.props.match.params.postId;
         const graphqlQuery = {
             query: `
-                {
-                    post(id: "${postId}") {
+                 query fetchSinglePost($postId: ID!) {
+                    post(id: $postId) {
                         title
                         creator {
                             name
@@ -27,7 +27,10 @@ class SinglePost extends Component {
                         content
                     }
                 }
-            `
+            `,
+            variables: {
+                postId
+            }
         };
         fetch(`http://localhost:8080/graphql`, {
             method: 'POST',
