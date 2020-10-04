@@ -39,7 +39,6 @@ class SinglePost extends Component {
         })
             .then(res => res.json())
             .then(resData => {
-                console.log('here boy: ', resData);
                 if (resData.errors) {
                     throw new Error('Failed to fetch status');
                 }
