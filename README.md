@@ -6,7 +6,7 @@
 
 > GraphQL/Node.js Learning Project intended to upgrade my back-end skills.
 
-## [:fire: Heroku URL :fire:](https://maxs-node-blog.herokuapp.com/)
+## [:fire: Firebase URL :fire:](https://maxs-node-blog.web.app/)
 
 ## Usage example
 
