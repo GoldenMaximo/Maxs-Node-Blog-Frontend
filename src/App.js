@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { Route, Switch, Redirect, withRouter } from 'react-router-dom';
 
+import { graphqlEndpoint } from './util/endpoints';
 import Layout from './components/Layout/Layout';
 import Backdrop from './components/Backdrop/Backdrop';
 import Toolbar from './components/Toolbar/Toolbar';
@@ -12,8 +13,6 @@ import SinglePostPage from './pages/Feed/SinglePost/SinglePost';
 import LoginPage from './pages/Auth/Login';
 import SignupPage from './pages/Auth/Signup';
 import './App.css';
-import auth from './pages/Auth/Auth';
-import post from './components/Feed/Post/Post';
 
 class App extends Component {
     state = {
@@ -76,7 +75,7 @@ class App extends Component {
             }
         };
 
-        fetch('http://localhost:8080/graphql',
+        fetch(graphqlEndpoint,
             {
                 method: 'POST',
                 headers: {
@@ -145,7 +144,7 @@ class App extends Component {
                 password: authData.signupForm.password.value
             }
         };
-        fetch('http://localhost:8080/graphql', {
+        fetch(graphqlEndpoint, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

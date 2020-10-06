@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react';
 
+import { graphqlEndpoint, postImageEndpoint } from '../../util/endpoints';
 import Post from '../../components/Feed/Post/Post';
 import Button from '../../components/Button/Button';
 import FeedEdit from '../../components/Feed/FeedEdit/FeedEdit';
@@ -32,7 +33,7 @@ class Feed extends Component {
             `
         };
 
-        fetch('http://localhost:8080/graphql', {
+        fetch(graphqlEndpoint, {
             method: 'POST',
             body: JSON.stringify(graphqlQuery),
             headers: {
@@ -89,7 +90,7 @@ class Feed extends Component {
             }
         };
 
-        fetch(`http://localhost:8080/graphql`, {
+        fetch(graphqlEndpoint, {
             method: 'POST',
             headers: {
                 Authorization: `Bearer ${this.props.token}`,
@@ -135,7 +136,7 @@ class Feed extends Component {
             }
         };
 
-        fetch('http://localhost:8080/graphql', {
+        fetch(graphqlEndpoint, {
             method: 'POST',
             body: JSON.stringify(graphqlQuery),
             headers: {
@@ -183,7 +184,7 @@ class Feed extends Component {
             formData.append('oldPath', this.state.editPost.imagePath);
         }
 
-        fetch('http://localhost:8080/post-image', {
+        fetch(postImageEndpoint, {
             method: 'PUT',
             headers: {
                 Authorization: `Bearer ${this.props.token}`
@@ -240,7 +241,7 @@ class Feed extends Component {
                     };
                 }
 
-                return fetch('http://localhost:8080/graphql', {
+                return fetch(graphqlEndpoint, {
                     method: 'POST',
                     headers: {
                         Authorization: `Bearer ${this.props.token}`,
@@ -327,7 +328,7 @@ class Feed extends Component {
             `
         }
 
-        fetch(`http://localhost:8080/graphql`, {
+        fetch(graphqlEndpoint, {
             method: 'POST',
             headers: {
                 Authorization: `Bearer ${this.props.token}`,
